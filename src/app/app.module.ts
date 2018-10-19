@@ -6,6 +6,7 @@ import { MyApp } from './app.component';
 import { ProjetosPage } from '../pages/projetos/projetos';
 import { ProjetoPage } from '../pages/projeto/projeto';
 import { TarefasPage } from '../pages/tarefas/tarefas';
+import { TarefaPage } from '../pages/tarefa/tarefa';
 import { TabsPage } from '../pages/tabs/tabs';
 
 import { ProjetosServiceProvider } from '../providers/projetos-service/projetos-service';
@@ -23,6 +24,7 @@ import { HttpModule } from '@angular/http';
     ProjetosPage,
     ProjetoPage,
     TarefasPage,
+    TarefaPage,
     TabsPage
   ],
   imports: [
@@ -37,6 +39,7 @@ import { HttpModule } from '@angular/http';
     ProjetosPage,
     ProjetoPage,
     TarefasPage,
+    TarefaPage,
     TabsPage
   ],
   providers: [

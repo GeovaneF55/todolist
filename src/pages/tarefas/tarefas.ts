@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { TarefasServiceProvider } from '../../providers/tarefas-service/tarefas-service'
 import { ProjetosServiceProvider } from '../../providers/projetos-service/projetos-service'
+import { TarefaPage } from '../tarefa/tarefa'
 
 @Component({
   selector: 'page-tarefas',
@@ -29,12 +30,13 @@ export class TarefasPage {
     return "projeto não encontrado";
   }
 
-  selecionaTarefa(codigo){
-
+  selecionaTarefa(c){
+    let codigo:number = parseInt(c);
+    this.navCtrl.push(TarefaPage, {codigo: codigo, novo: false});
   }
 
   novaTarefa(){
-    
+    this.navCtrl.push(TarefaPage, {codigo: 0, novo: true});
   }
 
 }

@@ -14,12 +14,12 @@ export class ProjetoPage {
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              public projetosSetvice: ProjetosServiceProvider) {
+              public projetosService: ProjetosServiceProvider) {
     this.codigoProjeto = navParams.get('codigo');
     this.novo = navParams.get('novo');
 
     if(!this.novo){
-      let projetos = projetosSetvice.getProjetos();
+      let projetos = projetosService.getProjetos();
       for(let i=0; i<projetos.length; i++){
         if(projetos[i].codigo == this.codigoProjeto){
           this.nomeProjeto = projetos[i].nome;
@@ -30,17 +30,17 @@ export class ProjetoPage {
   }
 
   incluir(){
-    this.projetosSetvice.addProjeto(this.nomeProjeto);
+    this.projetosService.addProjeto(this.nomeProjeto);
     this.navCtrl.pop();
   }
 
   alterar(){
-    this.projetosSetvice.editProjeto(this.codigoProjeto, this.nomeProjeto);
+    this.projetosService.editProjeto(this.codigoProjeto, this.nomeProjeto);
     this.navCtrl.pop();
   }
 
   excluir(){
-    this.projetosSetvice.deleteProjeto(this.codigoProjeto);
+    this.projetosService.deleteProjeto(this.codigoProjeto);
     this.navCtrl.pop();
   }
 

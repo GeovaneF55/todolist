@@ -18,7 +18,7 @@ export class ProjetosPage {
   }
 
   selecionaProjeto(c){
-    let codigo = parseInt(c);
+    let codigo:number = parseInt(c);
     this.navCtrl.push(ProjetoPage, {codigo: codigo, novo: false});
   }
 
