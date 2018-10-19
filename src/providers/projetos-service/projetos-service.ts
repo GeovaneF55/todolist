@@ -21,6 +21,14 @@ export class ProjetosServiceProvider {
     return this.projetos;
   }
 
+  addProjeto(nome:string){
+    this.ultimoCodigo++;
+    this.projetos.push({
+      codigo: this.ultimoCodigo,
+      nome: nome
+    });
+  }
+
   editProjeto(codigo:number, nome:string){
     for(let i=0; i<this.projetos.length; i++){
       if(this.projetos[i].codigo == codigo){

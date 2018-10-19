@@ -17,17 +17,23 @@
     </ion-item>
   </ion-list>
 
-  <ion-card class="alert" *ngIf="!nome.valid">
+  <ion-card class="alert" *ngIf="!nome.valid && nome.dirty">
     <ion-card-content>
       O nome do projeto não pode ficar em branco.
     </ion-card-content>
   </ion-card>
 
   <div id="right">
-    <button ion-button round color="primary" (click)="alterar()" [disabled]="!nome.valid">
+    <button ion-button round color="primary" (click)="incluir()"
+    [disabled]="!nome.valid" [class.invisivel]="!novo">
       <ion-icon name="checkmark"></ion-icon>
     </button>
-    <button ion-button round color="danger" (click)="excluir()">
+    <button ion-button round color="primary" (click)="alterar()"
+    [disabled]="!nome.valid" [class.invisivel]="novo">
+      <ion-icon name="checkmark"></ion-icon>
+    </button>
+    <button ion-button round color="danger" (click)="excluir()"
+    [class.invisivel]="novo">
       <ion-icon name="trash"></ion-icon>
     </button>
   </div>

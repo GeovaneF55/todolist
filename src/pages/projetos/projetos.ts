@@ -15,16 +15,15 @@ export class ProjetosPage {
               public navParams: NavParams,
               public projetosService: ProjetosServiceProvider) {
     this.projetos = projetosService.getProjetos();
-    console.log(this.projetos);
   }
 
   selecionaProjeto(c){
     let codigo = parseInt(c);
-    this.navCtrl.push(ProjetoPage, {codigo: codigo});
+    this.navCtrl.push(ProjetoPage, {codigo: codigo, novo: false});
   }
 
   novoProjeto(){
-    console.log("Novo");
+    this.navCtrl.push(ProjetoPage, {codigo: 0, novo: true});
   }
 
 }
