@@ -10,6 +10,8 @@ import { TarefaPage } from '../tarefa/tarefa'
 })
 export class TarefasPage {
 
+  rootPage = null;
+
   tarefas: any[];
   projetos: any[];
 

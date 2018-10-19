@@ -1,11 +1,38 @@
 <ion-header>
 
   <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon slot="icon-only" name="menu"></ion-icon>
+    </button>
     <ion-title>Tarefas</ion-title>
   </ion-navbar>
 
 </ion-header>
 
+<ion-menu type="overlay" [content]="menuContent">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Filtros</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-list>
+      <ion-item-divider>POR TEMPO</ion-item-divider>
+      <ion-item-group>
+        <button ion-item (click)="limpaFiltros()">Todas</button>
+        <button ion-item (click)="filtroDias(0)">Até Hoje</button>
+        <button ion-item (click)="filtroDias(1)">Até Amanhã</button>
+        <button ion-item (click)="filtroDias(7)">Até Próxima Semana</button>
+      </ion-item-group>
+      <ion-item-divider>POR PROJETO</ion-item-divider>
+      <ion-item-group>
+        <button ion-item *ngFor="let p of projetos" (click)="filtroProjeto(p.codigo)">{{p.nome}}</button>
+      </ion-item-group>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+<ion-nav id="nav" #menuContent [root]="rootPage"></ion-nav>
 
 <ion-content padding>
   <ion-list>
