@@ -9,13 +9,22 @@
 
 <ion-content padding>
   <ion-list>
-    <ion-label color="primary">Nome:</ion-label>
-    <ion-input type="text" placeholder="Nome do Projeto" value="{{nomeProjeto}}">
-    </ion-input>
+    <ion-item>
+      <ion-label color="primary">Nome:</ion-label>
+      <ion-input type="text" placeholder="Nome do Projeto" 
+      name="nomeProjeto" [(ngModel)]="nomeProjeto" #nome="ngModel" required>
+      </ion-input>
+    </ion-item>
   </ion-list>
 
+  <ion-card class="alert" *ngIf="!nome.valid">
+    <ion-card-content>
+      O nome do projeto não pode ficar em branco.
+    </ion-card-content>
+  </ion-card>
+
   <div id="right">
-    <button ion-button round color="primary" (click)="alterar()">
+    <button ion-button round color="primary" (click)="alterar()" [disabled]="!nome.valid">
       <ion-icon name="checkmark"></ion-icon>
     </button>
     <button ion-button round color="danger" (click)="excluir()">

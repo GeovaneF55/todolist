@@ -26,11 +26,13 @@ export class ProjetoPage {
   }
 
   alterar(){
-
+    this.projetosSetvice.editProjeto(this.codigoProjeto, this.nomeProjeto);
+    this.navCtrl.pop();
   }
 
   excluir(){
-    
+    this.projetosSetvice.deleteProjeto(this.codigoProjeto);
+    this.navCtrl.pop();
   }
 
 }

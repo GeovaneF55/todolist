@@ -21,4 +21,22 @@ export class ProjetosServiceProvider {
     return this.projetos;
   }
 
+  editProjeto(codigo:number, nome:string){
+    for(let i=0; i<this.projetos.length; i++){
+      if(this.projetos[i].codigo == codigo){
+        this.projetos[i].nome = nome;
+        break;
+      }
+    }
+  }
+
+  deleteProjeto(codigo:number){
+    for(let i=0; i<this.projetos.length; i++){
+      if(this.projetos[i].codigo == codigo){
+        this.projetos.splice(i,1);
+        break;
+      }
+    }
+  }
+
 }
