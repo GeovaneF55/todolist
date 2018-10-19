@@ -51,15 +51,33 @@ export class TarefaPage {
   }
 
   incluir(){
-    
+    let d = new Date(parseInt(this.data.substr(0,4)),
+                     parseInt(this.data.substr(5,2)),
+                     parseInt(this.data.substr(8,2)));
+
+    this.tarefasService.addTarefa(this.codigoProjeto,
+                                  this.descricao,
+                                  d,
+                                  this.prioridade);
+    this.navCtrl.pop();
   }
 
   alterar(){
-    
+    let d = new Date(parseInt(this.data.substr(0,4)),
+                     parseInt(this.data.substr(5,2)),
+                     parseInt(this.data.substr(8,2)));
+
+    this.tarefasService.editTarefa(this.codigoTarefa,
+                                   this.codigoProjeto,
+                                   this.descricao,
+                                   d,
+                                   this.prioridade);
+    this.navCtrl.pop();
   }
 
   excluir(){
-    
+    this.tarefasService.deleteTarefa(this.codigoTarefa);
+    this.navCtrl.pop();
   }
 
 }

@@ -20,6 +20,7 @@ export class TarefasServiceProvider {
     {codigo: 7, projeto: 5, descricao: 'Fazer Tarefa 23',
      data: new Date(2018, 10, 19), prioridade: 1},
   ]
+  ultimoCodigo = 7;
 
   constructor(public http: HttpClient) {
     console.log('Hello TarefasServiceProvider Provider');
@@ -27,6 +28,38 @@ export class TarefasServiceProvider {
 
   getTarefas(): any[]{
     return this.tarefas;
+  }
+
+  addTarefa(codProjeto:number, descricao:string, data:Date, prioridade:number){
+    this.ultimoCodigo++;
+    this.tarefas.push({
+      codigo: this.ultimoCodigo,
+      projeto: codProjeto,
+      descricao: descricao,
+      data: data,
+      prioridade: prioridade
+    });
+  }
+
+  editTarefa(codigo:number, codProjeto:number, descricao:string, data:Date, prioridade:number){
+    for(let i=0; i<this.tarefas.length; i++){
+      if(this.tarefas[i].codigo == codigo){
+        this.tarefas[i].projeto = codProjeto;
+        this.tarefas[i].descricao = descricao;
+        this.tarefas[i].data = data;
+        this.tarefas[i].prioridade = prioridade;
+        break;
+      }
+    }
+  }
+
+  deleteTarefa(codigo:number){
+    for(let i=0; i<this.tarefas.length; i++){
+      if(this.tarefas[i].codigo == codigo){
+        this.tarefas.splice(i,1);
+        break;
+      }
+    }
   }
 
 }

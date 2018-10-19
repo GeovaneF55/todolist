@@ -41,16 +41,16 @@
     </ion-card-content>
   </ion-card>
   <div id="right">
-    <button ion-button round color="primary" (click)="incluir()"
-    [disabled]="!cd.valid" [class.invisivel]="!novo">
-      <ion-icon name="checkmark"></ion-icon>
+    <button ion-button round color="danger" (click)="excluir()" [class.invisivel]="novo">
+      <ion-icon name="trash"></ion-icon>
     </button>
     <button ion-button round color="primary" (click)="alterar()"
     [disabled]="!cd.valid" [class.invisivel]="novo">
       <ion-icon name="checkmark"></ion-icon>
     </button>
-    <button ion-button round color="danger" (click)="excluir()" [class.invisivel]="novo">
-      <ion-icon name="trash"></ion-icon>
+    <button ion-button round color="primary" (click)="incluir()"
+    [disabled]="!cd.valid" [class.invisivel]="!novo">
+      <ion-icon name="checkmark"></ion-icon>
     </button>
   </div>
 </ion-content>
