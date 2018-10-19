@@ -48,6 +48,11 @@ export class TarefasPage {
     this.menuCtrl.close();
   }
 
+  filtroDias(qt_dias){
+    this.filtroTarefas = { dias: qt_dias };
+    this.menuCtrl.close();
+  }
+
   filtroProjeto(codigo){
     this.filtroTarefas = { projeto: codigo };
     this.menuCtrl.close();
