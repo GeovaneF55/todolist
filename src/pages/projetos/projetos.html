@@ -8,5 +8,14 @@
 
 
 <ion-content padding>
-
+  <ion-list>
+    <button ion-item *ngFor="let p of projetos" (click)="selecionaProjeto(p.codigo)">
+      {{p.nome}}
+    </button>
+  </ion-list>
+  <div id="right">
+    <button ion-button round color="primary" (click)="novoProjeto()">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </div>
 </ion-content>
