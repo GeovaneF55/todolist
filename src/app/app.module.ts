@@ -4,6 +4,7 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
 import { ProjetosPage } from '../pages/projetos/projetos';
+import { ProjetoPage } from '../pages/projeto/projeto';
 import { TabsPage } from '../pages/tabs/tabs';
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -17,6 +18,7 @@ import { HttpModule } from '@angular/http';
   declarations: [
     MyApp,
     ProjetosPage,
+    ProjetoPage,
     TabsPage
   ],
   imports: [
@@ -29,6 +31,7 @@ import { HttpModule } from '@angular/http';
   entryComponents: [
     MyApp,
     ProjetosPage,
+    ProjetoPage,
     TabsPage
   ],
   providers: [

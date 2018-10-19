@@ -1,0 +1,25 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Projeto</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+    <ion-label color="primary">Nome:</ion-label>
+    <ion-input type="text" placeholder="Nome do Projeto" value="{{nomeProjeto}}">
+    </ion-input>
+  </ion-list>
+
+  <div id="right">
+    <button ion-button round color="primary" (click)="alterar()">
+      <ion-icon name="checkmark"></ion-icon>
+    </button>
+    <button ion-button round color="danger" (click)="excluir()">
+      <ion-icon name="trash"></ion-icon>
+    </button>
+  </div>
+</ion-content>
