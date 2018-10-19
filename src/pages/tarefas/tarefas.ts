@@ -29,4 +29,12 @@ export class TarefasPage {
     return "projeto não encontrado";
   }
 
+  selecionaTarefa(codigo){
+
+  }
+
+  novaTarefa(){
+    
+  }
+
 }
