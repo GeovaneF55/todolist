@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, MenuController } from 'ionic-angular';
 import { TarefasServiceProvider } from '../../providers/tarefas-service/tarefas-service'
 import { ProjetosServiceProvider } from '../../providers/projetos-service/projetos-service'
 import { TarefaPage } from '../tarefa/tarefa'
@@ -14,9 +14,11 @@ export class TarefasPage {
 
   tarefas: any[];
   projetos: any[];
+  filtroTarefas = {};
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
+              public menuCtrl: MenuController,
               public tarefasService: TarefasServiceProvider,
               public projetosService: ProjetosServiceProvider) {
     this.tarefas = tarefasService.getTarefas();
@@ -39,6 +41,16 @@ export class TarefasPage {
 
   novaTarefa(){
     this.navCtrl.push(TarefaPage, {codigo: 0, novo: true});
+  }
+
+  limpaFiltros(){
+    this.filtroTarefas = {};
+    this.menuCtrl.close();
+  }
+
+  filtroProjeto(codigo){
+    this.filtroTarefas = { projeto: codigo };
+    this.menuCtrl.close();
   }
 
 }

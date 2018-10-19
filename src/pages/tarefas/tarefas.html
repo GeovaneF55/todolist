@@ -36,7 +36,7 @@
 
 <ion-content padding>
   <ion-list>
-    <button ion-item *ngFor="let t of tarefas" (click)="selecionaTarefa(t.codigo)">
+    <button ion-item *ngFor="let t of tarefas | filtro: filtroTarefas" (click)="selecionaTarefa(t.codigo)">
       <h2>{{t.descricao | uppercase}}</h2>
       <h3>{{nomeProjeto(t.projeto)}} ({{t.projeto}})</h3>
       <p>{{t.data | date: 'dd/MM/yyyy'}}</p>

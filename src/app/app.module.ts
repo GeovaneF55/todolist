@@ -12,6 +12,8 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { ProjetosServiceProvider } from '../providers/projetos-service/projetos-service';
 import { TarefasServiceProvider } from '../providers/tarefas-service/tarefas-service';
 
+import { Filtro } from '../filters/filters';
+
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -21,6 +23,7 @@ import { HttpModule } from '@angular/http';
 @NgModule({
   declarations: [
     MyApp,
+    Filtro,
     ProjetosPage,
     ProjetoPage,
     TarefasPage,
