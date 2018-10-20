@@ -16,8 +16,8 @@
     </ion-item>
     <ion-item>
       <ion-label color="primary">Projeto</ion-label>
-      <ion-select [(ngModel)]="codigoProjeto">
-        <ion-option *ngFor="let p of projetos" value="{{p.codigo}}">
+      <ion-select [(ngModel)]="idProjeto">
+        <ion-option *ngFor="let p of projetos" value="{{p.id}}">
           {{p.nome}}
         </ion-option>
       </ion-select>

@@ -26,7 +26,7 @@
       </ion-item-group>
       <ion-item-divider>POR PROJETO</ion-item-divider>
       <ion-item-group>
-        <button ion-item *ngFor="let p of projetos" (click)="filtroProjeto(p.codigo)">{{p.nome}}</button>
+        <button ion-item *ngFor="let p of projetos" (click)="filtroProjeto(p.id)">{{p.nome}}</button>
       </ion-item-group>
     </ion-list>
   </ion-content>
@@ -36,7 +36,7 @@
 
 <ion-content padding>
   <ion-list>
-    <button ion-item *ngFor="let t of tarefas | filtro: filtroTarefas" (click)="selecionaTarefa(t.codigo)">
+    <button ion-item *ngFor="let t of tarefas | filtro: filtroTarefas" (click)="selecionaTarefa(t.id)">
       <h2>{{t.descricao | uppercase}}</h2>
       <h3>{{nomeProjeto(t.projeto)}} ({{t.projeto}})</h3>
       <p>{{t.data | date: 'dd/MM/yyyy'}}</p>

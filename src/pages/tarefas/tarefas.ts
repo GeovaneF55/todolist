@@ -29,9 +29,9 @@ export class TarefasPage {
     });
   }
 
-  nomeProjeto(codigo):string{
+  nomeProjeto(id):string{
     for(let i=0; i<this.projetos.length; i++){
-      if(this.projetos[i].codigo == codigo){
+      if(this.projetos[i].id == id){
         return this.projetos[i].nome;
       }
     }
@@ -39,12 +39,12 @@ export class TarefasPage {
   }
 
   selecionaTarefa(c){
-    let codigo:number = parseInt(c);
-    this.navCtrl.push(TarefaPage, {codigo: codigo, novo: false});
+    let id:number = parseInt(c);
+    this.navCtrl.push(TarefaPage, {id: id, novo: false});
   }
 
   novaTarefa(){
-    this.navCtrl.push(TarefaPage, {codigo: 0, novo: true});
+    this.navCtrl.push(TarefaPage, {id: 0, novo: true});
   }
 
   limpaFiltros(){
@@ -57,8 +57,8 @@ export class TarefasPage {
     this.menuCtrl.close();
   }
 
-  filtroProjeto(codigo){
-    this.filtroTarefas = { projeto: codigo };
+  filtroProjeto(id){
+    this.filtroTarefas = { projeto: id };
     this.menuCtrl.close();
   }
 

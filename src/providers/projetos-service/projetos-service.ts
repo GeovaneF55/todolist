@@ -8,16 +8,30 @@ export class ProjetosServiceProvider {
   url:string = 'https://my-json-server.typicode.com/GeovaneF55/todolist-repo';
 
   projetos = [
-    {codigo: 1, nome: 'ADA'},
-    {codigo: 2, nome: 'Redes I'},
-    {codigo: 3, nome: 'Computação Gráfica'},
-    {codigo: 4, nome: 'Processamento de Imagens'},
-    {codigo: 5, nome: 'Computação Paralela'},
+    {id: 1, nome: 'ADA'},
+    {id: 2, nome: 'Redes I'},
+    {id: 3, nome: 'Computação Gráfica'},
+    {id: 4, nome: 'Processamento de Imagens'},
+    {id: 5, nome: 'Computação Paralela'},
   ]
-  ultimoCodigo = 3;
+  ultimoid = 3;
 
   constructor(public http: HttpClient) {
     console.log('Hello ProjetosServiceProvider Provider');
+  }
+
+  getProjeto(id: number): Promise<any>{
+    return new Promise(resolve => {
+      this.http.get(this.url + "/projetos/" + id)
+      .toPromise()
+      .then( resposta => {
+        let projeto = {
+            id: parseInt(resposta.id),
+            nome: resposta.projeto
+          }
+        resolve(projeto);
+      });
+    });
   }
 
   getProjetos(): Promise<any[]>{
@@ -28,7 +42,7 @@ export class ProjetosServiceProvider {
         let projetos = [];
         for(let i=0; i<resposta.length; i++){
           projetos.push({
-            codigo: parseInt(resposta[i].codigo),
+            id: parseInt(resposta[i].id),
             nome: resposta[i].projeto
           });
         }
@@ -38,25 +52,25 @@ export class ProjetosServiceProvider {
   }
 
   addProjeto(nome:string){
-    this.ultimoCodigo++;
+    this.ultimoid++;
     this.projetos.push({
-      codigo: this.ultimoCodigo,
+      id: this.ultimoid,
       nome: nome
     });
   }
 
-  editProjeto(codigo:number, nome:string){
+  editProjeto(id:number, nome:string){
     for(let i=0; i<this.projetos.length; i++){
-      if(this.projetos[i].codigo == codigo){
+      if(this.projetos[i].id == id){
         this.projetos[i].nome = nome;
         break;
       }
     }
   }
 
-  deleteProjeto(codigo:number){
+  deleteProjeto(id:number){
     for(let i=0; i<this.projetos.length; i++){
-      if(this.projetos[i].codigo == codigo){
+      if(this.projetos[i].id == id){
         this.projetos.splice(i,1);
         break;
       }

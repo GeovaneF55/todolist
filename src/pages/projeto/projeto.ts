@@ -8,21 +8,21 @@ import { ProjetosServiceProvider } from '../../providers/projetos-service/projet
 })
 export class ProjetoPage {
 
-  codigoProjeto: number;
+  idProjeto: number;
   nomeProjeto: string = "";
   novo: boolean;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public projetosService: ProjetosServiceProvider) {
-    this.codigoProjeto = navParams.get('codigo');
+    this.idProjeto = navParams.get('id');
     this.novo = navParams.get('novo');
 
     if(!this.novo){
       projetosService.getProjetos().then( dados => {
         let projetos = dados;
         for(let i=0; i<projetos.length; i++){
-          if(projetos[i].codigo == this.codigoProjeto){
+          if(projetos[i].id == this.idProjeto){
             this.nomeProjeto = projetos[i].nome;
             break;
           }
@@ -37,12 +37,12 @@ export class ProjetoPage {
   }
 
   alterar(){
-    this.projetosService.editProjeto(this.codigoProjeto, this.nomeProjeto);
+    this.projetosService.editProjeto(this.idProjeto, this.nomeProjeto);
     this.navCtrl.pop();
   }
 
   excluir(){
-    this.projetosService.deleteProjeto(this.codigoProjeto);
+    this.projetosService.deleteProjeto(this.idProjeto);
     this.navCtrl.pop();
   }
 

@@ -12,8 +12,8 @@ export class TarefaPage {
   projetos: any[];
   novo: boolean;
   
-  codigoTarefa: number;
-  codigoProjeto: number;
+  idTarefa: number;
+  idProjeto: number;
   descricao: string;
   prioridade: number;
   data: string;
@@ -26,24 +26,20 @@ export class TarefaPage {
       this.projetos = dados;
     });
     this.novo = navParams.get('novo');
-    this.codigoTarefa = navParams.get('codigo');
+    this.idTarefa = navParams.get('id');
 
     if(!this.novo){
-      tarefasService.getTarefas().then( tarefas => {
-        for(let i=0; i<tarefas.length; i++){
-          if(tarefas[i].codigo == this.codigoTarefa){
-            this.codigoProjeto = tarefas[i].projeto;
-            this.descricao = tarefas[i].descricao;
-            this.prioridade = tarefas[i].prioridade;
-            let d =  tarefas[i].data;
-            this.data = d.getFullYear() + "-" +
-                        ("0" + (d.getMonth()+1)).substr(-2,2) + "-" +
-                        ("0" + d.getDate()).substr(-2,2);
-          }
-        }
+      tarefasService.getTarefa(this.idTarefa).then( tarefa => {
+        this.idProjeto = tarefa.projeto;
+        this.descricao = tarefa.descricao;
+        this.prioridade = tarefa.prioridade;
+        let d =  tarefa.data;
+        this.data = d.getFullYear() + "-" +
+                    ("0" + (d.getMonth()+1)).substr(-2,2) + "-" +
+                    ("0" + d.getDate()).substr(-2,2);
       });
     } else {
-      this.codigoProjeto = this.projetos[0].codigo;
+      this.idProjeto = this.projetos[0].id;
       this.descricao = "";
       this.prioridade = 3;
       let d = new Date();
@@ -58,7 +54,7 @@ export class TarefaPage {
                      parseInt(this.data.substr(5,2)),
                      parseInt(this.data.substr(8,2)));
 
-    this.tarefasService.addTarefa(this.codigoProjeto,
+    this.tarefasService.addTarefa(this.idProjeto,
                                   this.descricao,
                                   d,
                                   this.prioridade);
@@ -70,8 +66,8 @@ export class TarefaPage {
                      parseInt(this.data.substr(5,2)),
                      parseInt(this.data.substr(8,2)));
 
-    this.tarefasService.editTarefa(this.codigoTarefa,
-                                   this.codigoProjeto,
+    this.tarefasService.editTarefa(this.idTarefa,
+                                   this.idProjeto,
                                    this.descricao,
                                    d,
                                    this.prioridade);
@@ -79,7 +75,7 @@ export class TarefaPage {
   }
 
   excluir(){
-    this.tarefasService.deleteTarefa(this.codigoTarefa);
+    this.tarefasService.deleteTarefa(this.idTarefa);
     this.navCtrl.pop();
   }
 
