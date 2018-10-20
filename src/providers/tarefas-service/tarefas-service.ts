@@ -1,8 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import 'rxjs/add/operator/toPromise'
 
 @Injectable()
 export class TarefasServiceProvider {
+
+  url:string = 'https://my-json-server.typicode.com/GeovaneF55/todolist-repo';
 
   tarefas = [
     {codigo: 1, projeto: 1, descricao: 'Iniciar o ADA',
@@ -26,8 +29,29 @@ export class TarefasServiceProvider {
     console.log('Hello TarefasServiceProvider Provider');
   }
 
-  getTarefas(): any[]{
-    return this.tarefas;
+  getTarefas(): Promise<any[]>{
+    return new Promise(resolve => {
+      this.http.get(this.url + "/tarefas")
+      .toPromise()
+      .then( resposta => {
+        let dados = resposta;
+        let tarefas = [];
+        for(let i=0; i<dados.length; i++){
+          tarefas.push({
+            codigo: parseInt(dados[i].codigo),
+            projeto: parseInt(dados[i].projeto),
+            descricao: dados[i].descricao,
+            data: new Date(
+              parseInt(dados[i].data.substr(0, 4)),
+              parseInt(dados[i].data.substr(5, 2))-1,
+              parseInt(dados[i].data.substr(8, 2))
+            ),
+            prioridade: parseInt(dados[i].prioridade)
+          });
+        }
+        resolve(tarefas);
+      });
+    });
   }
 
   addTarefa(codProjeto:number, descricao:string, data:Date, prioridade:number){

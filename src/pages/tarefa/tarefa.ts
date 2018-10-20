@@ -27,18 +27,19 @@ export class TarefaPage {
     this.codigoTarefa = navParams.get('codigo');
 
     if(!this.novo){
-      let tarefas = tarefasService.getTarefas();
-      for(let i=0; i<tarefas.length; i++){
-        if(tarefas[i].codigo == this.codigoTarefa){
-          this.codigoProjeto = tarefas[i].projeto;
-          this.descricao = tarefas[i].descricao;
-          this.prioridade = tarefas[i].prioridade;
-          let d =  tarefas[i].data;
-          this.data = d.getFullYear() + "-" +
-                      ("0" + (d.getMonth()+1)).substr(-2,2) + "-" +
-                      ("0" + d.getDate()).substr(-2,2);
+      tarefasService.getTarefas().then( tarefas => {
+        for(let i=0; i<tarefas.length; i++){
+          if(tarefas[i].codigo == this.codigoTarefa){
+            this.codigoProjeto = tarefas[i].projeto;
+            this.descricao = tarefas[i].descricao;
+            this.prioridade = tarefas[i].prioridade;
+            let d =  tarefas[i].data;
+            this.data = d.getFullYear() + "-" +
+                        ("0" + (d.getMonth()+1)).substr(-2,2) + "-" +
+                        ("0" + d.getDate()).substr(-2,2);
+          }
         }
-      }
+      });
     } else {
       this.codigoProjeto = this.projetos[0].codigo;
       this.descricao = "";

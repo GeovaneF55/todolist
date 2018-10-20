@@ -12,8 +12,8 @@ export class TarefasPage {
 
   rootPage = null;
 
-  tarefas: any[];
-  projetos: any[];
+  tarefas: any[] = [];
+  projetos: any[] = [];
   filtroTarefas = {};
 
   constructor(public navCtrl: NavController,
@@ -21,7 +21,9 @@ export class TarefasPage {
               public menuCtrl: MenuController,
               public tarefasService: TarefasServiceProvider,
               public projetosService: ProjetosServiceProvider) {
-    this.tarefas = tarefasService.getTarefas();
+    tarefasService.getTarefas().then( dados => {
+      this.tarefas = dados;
+    });
     this.projetos = projetosService.getProjetos();
   }
 
