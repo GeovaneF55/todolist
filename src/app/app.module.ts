@@ -16,6 +16,7 @@ import { Filtro } from '../filters/filters';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { Badge } from '@ionic-native/badge';
 
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
@@ -48,6 +49,7 @@ import { HttpModule } from '@angular/http';
   providers: [
     StatusBar,
     SplashScreen,
+    Badge,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ProjetosServiceProvider,
     TarefasServiceProvider
