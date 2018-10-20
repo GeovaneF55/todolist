@@ -22,7 +22,9 @@ export class TarefaPage {
               public navParams: NavParams,
               public tarefasService: TarefasServiceProvider,
               public projetosService: ProjetosServiceProvider) {
-    this.projetos = projetosService.getProjetos();
+    projetosService.getProjetos().then( dados => {
+      this.projetos = dados;
+    });
     this.novo = navParams.get('novo');
     this.codigoTarefa = navParams.get('codigo');
 

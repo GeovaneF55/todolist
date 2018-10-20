@@ -19,13 +19,15 @@ export class ProjetoPage {
     this.novo = navParams.get('novo');
 
     if(!this.novo){
-      let projetos = projetosService.getProjetos();
-      for(let i=0; i<projetos.length; i++){
-        if(projetos[i].codigo == this.codigoProjeto){
-          this.nomeProjeto = projetos[i].nome;
-          break;
+      projetosService.getProjetos().then( dados => {
+        let projetos = dados;
+        for(let i=0; i<projetos.length; i++){
+          if(projetos[i].codigo == this.codigoProjeto){
+            this.nomeProjeto = projetos[i].nome;
+            break;
+          }
         }
-      }
+      });
     }
   }
 

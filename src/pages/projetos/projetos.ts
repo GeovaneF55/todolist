@@ -14,7 +14,9 @@ export class ProjetosPage {
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public projetosService: ProjetosServiceProvider) {
-    this.projetos = projetosService.getProjetos();
+    projetosService.getProjetos().then( dados => {
+      this.projetos = dados;
+    });
   }
 
   selecionaProjeto(c){

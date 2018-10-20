@@ -24,7 +24,9 @@ export class TarefasPage {
     tarefasService.getTarefas().then( dados => {
       this.tarefas = dados;
     });
-    this.projetos = projetosService.getProjetos();
+    projetosService.getProjetos().then( dados => {
+      this.projetos = dados;
+    });
   }
 
   nomeProjeto(codigo):string{

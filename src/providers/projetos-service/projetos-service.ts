@@ -1,8 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import 'rxjs/add/operator/toPromise'
 
 @Injectable()
 export class ProjetosServiceProvider {
+
+  url:string = 'https://my-json-server.typicode.com/GeovaneF55/todolist-repo';
 
   projetos = [
     {codigo: 1, nome: 'ADA'},
@@ -17,8 +20,21 @@ export class ProjetosServiceProvider {
     console.log('Hello ProjetosServiceProvider Provider');
   }
 
-  getProjetos(){
-    return this.projetos;
+  getProjetos(): Promise<any[]>{
+    return new Promise(resolve => {
+      this.http.get(this.url + "/projetos")
+      .toPromise()
+      .then( resposta => {
+        let projetos = [];
+        for(let i=0; i<resposta.length; i++){
+          projetos.push({
+            codigo: parseInt(resposta[i].codigo),
+            nome: resposta[i].projeto
+          });
+        }
+        resolve(projetos);
+      });
+    });
   }
 
   addProjeto(nome:string){
