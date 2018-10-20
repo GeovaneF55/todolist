@@ -5,8 +5,8 @@ import 'rxjs/add/operator/toPromise'
 @Injectable()
 export class ProjetosServiceProvider {
 
-  //url:string = "https://my-json-server.typicode.com/GeovaneF55/todolist-repo";
-  url:string = "http://localhost:3000";
+  url:string = "https://my-json-server.typicode.com/GeovaneF55/todolist-repo";
+  //url:string = "http://localhost:3000";
 
   constructor(public http: Http) {
     console.log('Hello ProjetosServiceProvider Provider');
