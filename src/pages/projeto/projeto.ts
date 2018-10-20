@@ -8,7 +8,7 @@ import { ProjetosServiceProvider } from '../../providers/projetos-service/projet
 })
 export class ProjetoPage {
 
-  idProjeto: number;
+  idProjeto: string;
   nomeProjeto: string = "";
   novo: boolean;
 
@@ -19,31 +19,32 @@ export class ProjetoPage {
     this.novo = navParams.get('novo');
 
     if(!this.novo){
-      projetosService.getProjetos().then( dados => {
-        let projetos = dados;
-        for(let i=0; i<projetos.length; i++){
-          if(projetos[i].id == this.idProjeto){
-            this.nomeProjeto = projetos[i].nome;
-            break;
-          }
-        }
+      projetosService.getProjeto(this.idProjeto)
+      .then( projeto => {
+        this.nomeProjeto = projeto.projeto;
       });
     }
   }
 
   incluir(){
-    this.projetosService.addProjeto(this.nomeProjeto);
-    this.navCtrl.pop();
+    this.projetosService.addProjeto(this.nomeProjeto)
+    .then( dados => {
+      this.navCtrl.pop();
+    });
   }
 
   alterar(){
-    this.projetosService.editProjeto(this.idProjeto, this.nomeProjeto);
-    this.navCtrl.pop();
+    this.projetosService.editProjeto(this.idProjeto, this.nomeProjeto)
+    .then( dados => {
+      this.navCtrl.pop();
+    });
   }
 
   excluir(){
-    this.projetosService.deleteProjeto(this.idProjeto);
-    this.navCtrl.pop();
+    this.projetosService.deleteProjeto(this.idProjeto)
+    .then( dados => {
+      this.navCtrl.pop();
+    });
   }
 
 }

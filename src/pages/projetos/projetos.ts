@@ -19,8 +19,13 @@ export class ProjetosPage {
     });
   }
 
-  selecionaProjeto(c){
-    let id:number = parseInt(c);
+  ionViewDidEnter(){
+    this.projetosService.getProjetos().then( dados => {
+      this.projetos = dados;
+    });
+  }
+
+  selecionaProjeto(id: string){
     this.navCtrl.push(ProjetoPage, {id: id, novo: false});
   }
 

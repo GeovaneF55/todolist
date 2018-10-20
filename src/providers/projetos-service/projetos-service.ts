@@ -1,49 +1,43 @@
-import { HttpClient } from '@angular/common/http';
+import { Http, Headers } from '@angular/http';
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/toPromise'
 
 @Injectable()
 export class ProjetosServiceProvider {
 
-  url:string = 'https://my-json-server.typicode.com/GeovaneF55/todolist-repo';
+  //url:string = "https://my-json-server.typicode.com/GeovaneF55/todolist-repo";
+  url:string = "http://localhost:3000";
 
-  projetos = [
-    {id: 1, nome: 'ADA'},
-    {id: 2, nome: 'Redes I'},
-    {id: 3, nome: 'Computação Gráfica'},
-    {id: 4, nome: 'Processamento de Imagens'},
-    {id: 5, nome: 'Computação Paralela'},
-  ]
-  ultimoid = 3;
-
-  constructor(public http: HttpClient) {
+  constructor(public http: Http) {
     console.log('Hello ProjetosServiceProvider Provider');
   }
 
-  getProjeto(id: number): Promise<any>{
+  getProjeto(id: string): Promise<Projeto>{
     return new Promise(resolve => {
       this.http.get(this.url + "/projetos/" + id)
       .toPromise()
       .then( resposta => {
+        let dados = resposta.json();
         let projeto = {
-            id: parseInt(resposta.id),
-            nome: resposta.projeto
+            id: dados.id,
+            projeto: dados.projeto
           }
         resolve(projeto);
       });
     });
   }
 
-  getProjetos(): Promise<any[]>{
+  getProjetos(): Promise<Projeto[]>{
     return new Promise(resolve => {
       this.http.get(this.url + "/projetos")
       .toPromise()
       .then( resposta => {
+        let dados = resposta.json();
         let projetos = [];
-        for(let i=0; i<resposta.length; i++){
+        for(let i=0; i<dados.length; i++){
           projetos.push({
-            id: parseInt(resposta[i].id),
-            nome: resposta[i].projeto
+            id: dados[i].id,
+            nome: dados[i].projeto
           });
         }
         resolve(projetos);
@@ -51,30 +45,53 @@ export class ProjetosServiceProvider {
     });
   }
 
-  addProjeto(nome:string){
-    this.ultimoid++;
-    this.projetos.push({
-      id: this.ultimoid,
-      nome: nome
+  addProjeto(nome: string): Promise<any>{
+
+    let headers = new Headers({"Content-type": "application/json"});
+
+    let projeto = {
+      projeto: nome,
+    };
+
+    let body = JSON.stringify(projeto);
+
+    return new Promise( resolve => {
+      this.http.post(this.url + '/projetos', body, {headers: headers})
+      .toPromise()
+      .then( resposta => {
+        resolve(resposta.json());
+      });
     });
   }
 
-  editProjeto(id:number, nome:string){
-    for(let i=0; i<this.projetos.length; i++){
-      if(this.projetos[i].id == id){
-        this.projetos[i].nome = nome;
-        break;
-      }
-    }
+  editProjeto(id: string, nome: string): Promise <any>{
+    
+    let headers = new Headers({"Content-type": "application/json"});
+
+    let projeto = {
+      projeto: nome,
+    };
+
+    let body = JSON.stringify(projeto);
+
+    return new Promise( resolve => {
+      this.http.put(this.url + '/projetos/' + id, body, {headers: headers})
+      .toPromise()
+      .then( resposta => {
+        resolve(resposta.json());
+      });
+    });
   }
 
-  deleteProjeto(id:number){
-    for(let i=0; i<this.projetos.length; i++){
-      if(this.projetos[i].id == id){
-        this.projetos.splice(i,1);
-        break;
-      }
-    }
+  deleteProjeto(id: string): Promise <any>{
+
+    return new Promise( resolve => {
+      this.http.delete(this.url + "/projetos/" + id)
+      .toPromise()
+      .then(resposta => {
+        resolve(resposta.json());
+      });
+    });
   }
 
 }

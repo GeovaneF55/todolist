@@ -20,16 +20,18 @@ export class TarefasPage {
               public navParams: NavParams,
               public menuCtrl: MenuController,
               public tarefasService: TarefasServiceProvider,
-              public projetosService: ProjetosServiceProvider) {
-    tarefasService.getTarefas().then( dados => {
+              public projetosService: ProjetosServiceProvider) { }
+
+  ionViewDidEnter(){
+    this.tarefasService.getTarefas().then( dados => {
       this.tarefas = dados;
     });
-    projetosService.getProjetos().then( dados => {
+    this.projetosService.getProjetos().then( dados => {
       this.projetos = dados;
     });
   }
 
-  nomeProjeto(id):string{
+  nomeProjeto(id): string{
     for(let i=0; i<this.projetos.length; i++){
       if(this.projetos[i].id == id){
         return this.projetos[i].nome;
@@ -38,8 +40,7 @@ export class TarefasPage {
     return "projeto não encontrado";
   }
 
-  selecionaTarefa(c){
-    let id:number = parseInt(c);
+  selecionaTarefa(id){
     this.navCtrl.push(TarefaPage, {id: id, novo: false});
   }
 

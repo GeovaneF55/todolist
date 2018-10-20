@@ -38,7 +38,7 @@
   <ion-list>
     <button ion-item *ngFor="let t of tarefas | filtro: filtroTarefas" (click)="selecionaTarefa(t.id)">
       <h2>{{t.descricao | uppercase}}</h2>
-      <h3>{{nomeProjeto(t.projeto)}} ({{t.projeto}})</h3>
+      <h3>{{nomeProjeto(t.projeto)}}</h3>
       <p>{{t.data | date: 'dd/MM/yyyy'}}</p>
       <ion-badge item-right [class.alta]="t.prioridade==1"
       [class.media]="t.prioridade==2"

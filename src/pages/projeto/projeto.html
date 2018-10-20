@@ -12,12 +12,12 @@
     <ion-item>
       <ion-label color="primary">Nome:</ion-label>
       <ion-input type="text" placeholder="Nome do Projeto" 
-      name="nomeProjeto" [(ngModel)]="nomeProjeto" #nome="ngModel" required>
+      name="nomeProjeto" [(ngModel)]="nomeProjeto" #projeto="ngModel" required>
       </ion-input>
     </ion-item>
   </ion-list>
 
-  <ion-card class="alert" *ngIf="!nome.valid && nome.dirty">
+  <ion-card class="alert" *ngIf="!projeto.valid && projeto.dirty">
     <ion-card-content>
       O nome do projeto não pode ficar em branco.
     </ion-card-content>
@@ -29,11 +29,11 @@
       <ion-icon name="trash"></ion-icon>
     </button>
     <button ion-button round color="primary" (click)="alterar()"
-    [disabled]="!nome.valid" [class.invisivel]="novo">
+    [disabled]="!projeto.valid" [class.invisivel]="novo">
       <ion-icon name="checkmark"></ion-icon>
     </button>
     <button ion-button round color="primary" (click)="incluir()"
-    [disabled]="!nome.valid" [class.invisivel]="!novo">
+    [disabled]="!projeto.valid" [class.invisivel]="!novo">
       <ion-icon name="checkmark"></ion-icon>
     </button>
   </div>
