@@ -5,7 +5,7 @@ import 'rxjs/add/operator/toPromise'
 @Injectable()
 export class TarefasServiceProvider {
 
-  url:string = "https://my-json-server.typicode.com/GeovaneF55/todolist-repo";
+  url:string = "https://my-json-server.typicode.com/GeovaneF55/todolist-db";
   //url:string = "http://localhost:3000";
 
   constructor(public http: Http) {
